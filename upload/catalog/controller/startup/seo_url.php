@@ -21,7 +21,12 @@ class ControllerStartupSeoUrl extends Controller {
 
 		// Decode URL
 		if (isset($this->request->get['_route_'])) {
-            //echo __METHOD__ . ": route: '{$this->request->get['_route_']}'<br />\n";
+		    /*
+            echo __METHOD__ . ": route: '{$this->request->get['_route_']}'<br />\n";
+            echo __METHOD__ . ": req dmp:\n";
+            var_dump($this->request);
+            echo "<br />\n";
+            */
 
 			$parts = explode('/', $this->request->get['_route_']);
 
@@ -35,7 +40,7 @@ class ControllerStartupSeoUrl extends Controller {
 			foreach ($parts as $part) {
 			    $results = $this->model_design_seo_url->getSeoUrlsByKeyword($part);
 
-			    echo "rs seo url: '" . print_r($results, true) . "'<br />\n";
+			    //echo "rs seo url: '" . print_r($results, true) . "'<br />\n";
 
 			    if ($results) {
 			        foreach ($results as $result) {
@@ -54,6 +59,9 @@ class ControllerStartupSeoUrl extends Controller {
 					break;
 				}
 			}    //foreach ($parts as $part)
+
+			if (isset($this->request->get['product_id']))
+			    $this->request->get['route'] = 'product/product';
 
 			//echo "rs arr get: '" . print_r($this->request->get, true) . "'<br />\n";
 
@@ -107,7 +115,7 @@ class ControllerStartupSeoUrl extends Controller {
               } //if (isset($data['path']))
 
               foreach ($data as $key => $value) {
-                  echo "key: '$key': value: '$value'\n";
+                  //echo "key: '$key': value: '$value'\n";
 
                 if (isset($data['route'])) {
                   if (($data['route'] == 'product/product' && $key == 'product_id') || (($data['route'] == 'product/manufacturer/info' || $data['route'] == 'product/product') && $key == 'manufacturer_id') || ($data['route'] == 'information/information' && $key == 'information_id')) {

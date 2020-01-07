@@ -3,8 +3,8 @@
 $registry = new Registry();
 
 // Config
-echo __METHOD__ . ": conf dir: '" . DIR_CONFIG . "'<br />\n";
-echo __METHOD__ . ": app conf: '$application_config'<br />\n";
+//echo __METHOD__ . ": conf dir: '" . DIR_CONFIG . "'<br />\n";
+//echo __METHOD__ . ": app conf: '$application_config'<br />\n";
 $config = new Config();
 
 // Load the default config
