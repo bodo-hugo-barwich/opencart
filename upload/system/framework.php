@@ -3,6 +3,8 @@
 $registry = new Registry();
 
 // Config
+echo __METHOD__ . ": conf dir: '" . DIR_CONFIG . "'<br />\n";
+echo __METHOD__ . ": app conf: '$application_config'<br />\n";
 $config = new Config();
 
 // Load the default config
@@ -127,8 +129,20 @@ if ($config->get('session_autostart')) {
 // Cache
 $registry->set('cache', new Cache($config->get('cache_engine'), $config->get('cache_expire')));
 
+
+//echo "framework.php - cache - done<br />\n";
+
+//echo __METHOD__ . ": site_url: '{$config->get('site_url')}'<br />\n";
+
+//echo __METHOD__ . ": HTTP_SERVER: '" . HTTP_SERVER . "'<br />\n";
+//echo __METHOD__ . ": HTTPS_SERVER: '" . HTTPS_SERVER . "'<br />\n";
+
 // Url
-$registry->set('url', new Url($config->get('site_url')));
+//$registry->set('url', new Url($config->get('site_url')));
+$urlbuilder = new Url($config->get('site_url'));
+$urlbuilder->setRouteBase(HTTP_SERVER);
+$urlbuilder->setRouteBase(HTTPS_SERVER, true);
+$registry->set('url', $urlbuilder);
 
 // Language
 $registry->set('language', new Language($config->get('language_directory')));
