@@ -185,8 +185,8 @@ class ControllerStartupSeoUrl extends Controller {
 
             case "product/manufacturer/info":
             case "information/information":
-              foreach ($data as $key => $value) {
-                if (isset($data['route'])) {
+                foreach ($data as $key => $value) {
+                    if (isset($data['route'])) {
                   if (($data['route'] == 'product/product' && $key == 'product_id') || (($data['route'] == 'product/manufacturer/info' || $data['route'] == 'product/product') && $key == 'manufacturer_id') || ($data['route'] == 'information/information' && $key == 'information_id')) {
                     $skeyword = $this->model_design_seo_url->getKeywordByQuery($key . '=' . (int)$value);
 
